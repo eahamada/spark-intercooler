@@ -1,8 +1,22 @@
-import model.*;
-import spark.*;
-import spark.template.velocity.*;
-import java.util.*;
-import static spark.Spark.*;
+import static spark.Spark.delete;
+import static spark.Spark.exception;
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.post;
+import static spark.Spark.put;
+import static spark.Spark.staticFiles;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import model.Status;
+import model.Todo;
+import model.TodoDao;
+import spark.ModelAndView;
+import spark.Request;
+import spark.template.velocity.VelocityTemplateEngine;
+
 
 /**
  * This class contains exactly the same functionality as TodoList,

@@ -1,15 +1,19 @@
 package model;
 
-import lombok.*;
-import java.util.*;
+import java.util.UUID;
 
-@Data
-@AllArgsConstructor
 public class Todo {
 
-    String title;
-    String id;
-    Status status;
+    public String title;
+    public String id;
+    public Status status;
+
+    public Todo(String title, String id, Status status) {
+      this.title = title;
+      this.id=id;
+      this.status = status;
+      
+    }
 
     public void toggleStatus() {
         this.status = isComplete() ? Status.ACTIVE : Status.COMPLETE;

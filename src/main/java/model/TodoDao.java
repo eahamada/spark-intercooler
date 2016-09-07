@@ -1,7 +1,8 @@
 package model;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TodoDao {
 
@@ -12,11 +13,11 @@ public class TodoDao {
     }
 
     public static Todo find(String id) {
-        return DATA.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
+        return DATA.stream().filter(t -> t.id.equals(id)).findFirst().orElse(null);
     }
 
     public static void update(String id, String title) {
-        find(id).setTitle(title);
+        find(id).title = title;
     }
 
     public static List<Todo> ofStatus(String statusString) {
@@ -24,7 +25,7 @@ public class TodoDao {
     }
 
     public static List<Todo> ofStatus(Status status) {
-        return DATA.stream().filter(t -> t.getStatus().equals(status)).collect(Collectors.toList());
+        return DATA.stream().filter(t -> t.status.equals(status)).collect(Collectors.toList());
     }
 
     public static void remove(String id) {
@@ -32,7 +33,7 @@ public class TodoDao {
     }
 
     public static void removeCompleted() {
-        ofStatus(Status.COMPLETE).forEach(t -> TodoDao.remove(t.getId()));
+        ofStatus(Status.COMPLETE).forEach(t -> TodoDao.remove(t.id));
     }
 
     public static void toggleStatus(String id) {
@@ -40,7 +41,7 @@ public class TodoDao {
     }
 
     public static void toggleAll(boolean complete) {
-        TodoDao.all().forEach(t -> t.setStatus(complete ? Status.COMPLETE : Status.ACTIVE));
+        TodoDao.all().forEach(t -> t.status = (complete ? Status.COMPLETE : Status.ACTIVE));
     }
 
     public static List<Todo> all() {
