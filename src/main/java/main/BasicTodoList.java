@@ -1,3 +1,4 @@
+package main;
 import static spark.Spark.delete;
 import static spark.Spark.exception;
 import static spark.Spark.get;
